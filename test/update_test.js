@@ -3,7 +3,7 @@ const User = require('../src/user');
 
 describe('Update record...', (done) => {
   let joe;
-  beforeEach(() => {
+  beforeEach((done) => {
     joe = new User({ name: 'Joe' });
     joe.save().then(() => {
       done();
@@ -31,11 +31,13 @@ describe('Update record...', (done) => {
   // });
 
   it('A model instance can update', done => {
-    joe.update({ name: 'Alex'})
-      .then(() => User.find({}))
-      .then(users => {
-        console.log('users', users); //users [ { _id: 583b0dc61617182c5053f801, name: 'Joe', __v: 0 } ]
-        console.log('joe', joe); //joe { __v: 0, name: 'Joe', _id: 583b0dc61617182c5053f801 }
-      })
+    // joe.update({ name: 'Alex'})
+    //   .then(() => User.find({}))
+    //   .then(users => {
+    //     console.log('users', users); //users [ { _id: 583b0dc61617182c5053f801, name: 'Joe', __v: 0 } ]
+    //     console.log('joe', joe); //joe { __v: 0, name: 'Joe', _id: 583b0dc61617182c5053f801 }
+    //   })
+
+    assertName(joe.update({ name: 'Alex'}), 'Alex', done)
   });
 });
